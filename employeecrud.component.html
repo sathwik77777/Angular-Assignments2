@@ -1,0 +1,36 @@
+<div class="container">
+    <h2>Search Employee by Name</h2>
+    <div>
+      <input type="text" [(ngModel)]="searchEmployeeName" placeholder="Enter Employee Name">
+      <button (click)="search()">Search</button>
+    </div>
+  
+    <div *ngIf="isAvailable">
+      <h3>Employee Details</h3>
+      <table border="1">
+        <thead>
+          <tr>
+            <th>Employee ID</th>
+            <th>Name</th>
+            <th>Join Date</th>
+            <th>Designation</th>
+            <th>Salary</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let emp of employees">
+            <td>{{ emp.Eid }}</td>
+            <td>{{ emp.Ename }}</td>
+            <td>{{ emp.JoinDate | date }}</td>
+            <td>{{ emp.Designation }}</td>
+            <td>{{ emp.Salary | currency:'USD' }}</td>
+            <!-- Add more columns if needed -->
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <div *ngIf="!isAvailable && errMsg">
+      <p>{{ errMsg }}</p>
+    </div>
+  </div>
